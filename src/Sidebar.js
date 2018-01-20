@@ -29,6 +29,7 @@ const Sidebar = (props) => (
                     to={route.path}
                     text={route.text}
                     drawerToggle={props.drawerToggle}
+                    key={route.path}
                 />
             ))
         }

@@ -4,8 +4,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 
-import Counter from './Counter'
-import DefaultPropsComponent from './DefaultPropsComponent'
 import Sidebar from "./Sidebar";
 
 import routes from './routes'
@@ -40,6 +38,7 @@ class App extends Component {
                             routes.map(route => (
                                 <Route path={route.path}
                                        component={route.component}
+                                       key={route.path}
                                 />
                             ))
                         }
