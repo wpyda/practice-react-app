@@ -5,7 +5,9 @@ const databaseUrl = 'https://wpd-sandbox.firebaseio.com/restToDo/wojtek/'
 class RestToDoList extends Component {
     state = {
         list: null,
-        newTaskName: ""
+        newTaskName: "",
+        currentlyEditedTaskId: null,
+        currentlyEditedTaskName: ''
     }
 
     getDataFromDatabase = () => {
@@ -13,7 +15,9 @@ class RestToDoList extends Component {
             .then(response => response.json())
             .then(dataFromDatabase => this.setState({
                 list: dataFromDatabase,
-                newTaskName: ''
+                newTaskName: '',
+                currentlyEditedTaskId: null,
+                currentlyEditedTaskName: ''
             }))
     }
 
@@ -46,6 +50,30 @@ class RestToDoList extends Component {
             .catch((error) => alert('Cos poszlo nie tak')) // w catch zawsze jest error
     }
 
+    handleTaskNameClick = (taskId, taskName) => {
+        this.setState({
+            currentlyEditedTaskId: taskId,
+            currentlyEditedTaskName: taskName
+        })
+    }
+
+    handleEditInputChange = (e) => this.setState({
+        currentlyEditedTaskName: e.target.value
+    })
+
+    handleSaveButtonClick = () => {
+        const newTaskObject = {name: this.state.currentlyEditedTaskName}
+        fetch(
+            databaseUrl + 'list/' + this.state.currentlyEditedTaskId + '.json',
+            {
+                method: 'PATCH',
+                body: JSON.stringify(newTaskObject)
+            }
+        )
+            .then(() => {this.getDataFromDatabase()})
+            .catch((error) => alert('Cos poszlo nie tak'))
+    }
+
     render() {
         return (
             <div>
@@ -61,7 +89,22 @@ class RestToDoList extends Component {
                     Object.entries(this.state.list || {})
                         .map(([key, task]) => (
                             <div key={key}>
-                                {task.name}
+                                <span onClick={() => this.handleTaskNameClick(key, task.name)}>
+                                    {
+                                        this.state.currentlyEditedTaskId === key ?
+                                            <span>
+                                            <input
+                                                value={this.state.currentlyEditedTaskName}
+                                                onChange={this.handleEditInputChange}
+                                            />
+                                                <button onClick={this.handleSaveButtonClick}>
+                                                    Zapisz
+                                                </button>
+                                            </span>
+                                            :
+                                            task.name
+                                    }
+                                </span>
                                 <button onClick={() => this.deleteTask(key)}>
                                     Usun
                                 </button>
