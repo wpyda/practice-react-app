@@ -1,7 +1,7 @@
 import React from 'react'
 import LogIn from "./LogIn";
 
-import {auth} from './firebase'
+import {auth, googleProvider} from './firebase'
 
 class FirebaseLogIn extends React.Component {
 
@@ -34,7 +34,7 @@ class FirebaseLogIn extends React.Component {
             .then(() => console.log('Zalogowano'))
     }
     onLogInByGoogleClick = () => {
-        alert('onLogInByGoogleClick')
+        auth.signInWithPopup(googleProvider)
     }
 
     render() {
