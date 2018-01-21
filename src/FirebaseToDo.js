@@ -26,14 +26,15 @@ const Task = (props) => (
 class FirebaseToDo extends React.Component {
 
     state = {
-        tasks: null
+        tasks: null,
+        newTaskName: '',
     }
 
     componentWillMount() {
         database.ref('/firebaseToDo').on(
             'value', (snapshot) => {
                 const tasksArray = Object.entries(
-                    snapshot.val()
+                    snapshot.val() || {}
                 ).map(([key, value]) => {
                     value.key = key
                     return value
@@ -45,7 +46,23 @@ class FirebaseToDo extends React.Component {
     }
 
     deleteTask = (taskId) => {
-        alert(taskId)
+        database.ref(`/firebaseToDo/${taskId}`).remove()
+    }
+
+    updateState = (event, value) => {
+        this.setState({newTaskName: value})
+    }
+
+    addTask = () => {
+        if(!this.state.newTaskName) {
+            alert('Nie można zapisać pustego taska')
+            return
+        }
+
+        database.ref('/firebaseToDo').push({name: this.state.newTaskName})
+        this.setState({
+            newTaskName: ''
+        })
     }
 
     render() {
@@ -54,11 +71,14 @@ class FirebaseToDo extends React.Component {
                 <TextField
                     hintText='Nowe Zadanie'
                     fullWidth={true}
+                    onChange={this.updateState}
+                    value={this.state.newTaskName}
                 />
                 <RaisedButton
                     label='Dodaj'
                     secondary={true}
                     fullWidth={true}
+                    onClick={this.addTask}
                 />
                 <List style={{textAlign: 'left'}}>
                     {
@@ -66,6 +86,7 @@ class FirebaseToDo extends React.Component {
                         &&
                         this.state.tasks.map((task) => (
                             <Task
+                                key={task.key}
                                 taskName={task.name}
                                 taskId={task.key}
                                 deleteTask={this.deleteTask}
