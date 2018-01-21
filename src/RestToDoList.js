@@ -5,14 +5,15 @@ const databaseUrl = 'https://wpd-sandbox.firebaseio.com/restToDo/wojtek/'
 class RestToDoList extends Component {
     state = {
         list: null,
-        newTaskName: "Wpisz nowy task"
+        newTaskName: ""
     }
 
     getDatafromDatabase = () => {
         fetch(databaseUrl + 'list/.json')
             .then(response => response.json())
             .then(dataFromDatabase => this.setState({
-                list: dataFromDatabase
+                list: dataFromDatabase,
+                newTaskName: ''
             }))
     }
 
@@ -26,7 +27,6 @@ class RestToDoList extends Component {
 
     handleButtonClick = () => {
         const newTaskObject = {name: this.state.newTaskName}
-
         fetch(
             databaseUrl + 'list/.json',
             {
@@ -34,11 +34,7 @@ class RestToDoList extends Component {
                 body: JSON.stringify(newTaskObject)
             }
         )
-            .then(() => {
-                    alert('Dodano task!')
-                    this.getDatafromDatabase()
-                }
-            )
+            .then(() => {this.getDatafromDatabase()})
             .catch((error) => alert('Cos poszlo nie tak')) // w catch zawsze jest error
     }
 
