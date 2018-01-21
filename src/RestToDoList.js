@@ -8,7 +8,7 @@ class RestToDoList extends Component {
         newTaskName: ""
     }
 
-    getDatafromDatabase = () => {
+    getDataFromDatabase = () => {
         fetch(databaseUrl + 'list/.json')
             .then(response => response.json())
             .then(dataFromDatabase => this.setState({
@@ -17,8 +17,16 @@ class RestToDoList extends Component {
             }))
     }
 
+    deleteTask = (taskId) => {
+        fetch(
+            databaseUrl + 'list/' + taskId + '/.json',
+            {method: 'DELETE'}
+        )
+            .then(() => this.getDataFromDatabase())
+    }
+
     componentWillMount() {
-        this.getDatafromDatabase()
+        this.getDataFromDatabase()
     }
 
     handleInputChange = (event) => this.setState({
@@ -34,7 +42,7 @@ class RestToDoList extends Component {
                 body: JSON.stringify(newTaskObject)
             }
         )
-            .then(() => {this.getDatafromDatabase()})
+            .then(() => this.getDataFromDatabase())
             .catch((error) => alert('Cos poszlo nie tak')) // w catch zawsze jest error
     }
 
@@ -52,7 +60,12 @@ class RestToDoList extends Component {
                 {
                     Object.entries(this.state.list || {})
                         .map(([key, task]) => (
-                            <div key={key}>{task.name}</div>
+                            <div key={key}>
+                                {task.name}
+                                <button onClick={() => this.deleteTask(key)}>
+                                    Usun
+                                </button>
+                            </div>
                         ))
                 }
             </div>
