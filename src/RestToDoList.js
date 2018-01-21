@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-const databaseUrl = 'https://ad-snadbox.firebaseio.com/JFDDL3/restToDo/wojtek/'
+const databaseUrl = 'https://wpd-sandbox.firebaseio.com/restToDo/wojtek/'
 
 class RestToDoList extends Component {
     state = {
@@ -8,12 +8,16 @@ class RestToDoList extends Component {
         newTaskName: "Wpisz nowy task"
     }
 
-    componentWillMount() {
+    getDatafromDatabase = () => {
         fetch(databaseUrl + 'list/.json')
             .then(response => response.json())
             .then(dataFromDatabase => this.setState({
                 list: dataFromDatabase
             }))
+    }
+
+    componentWillMount() {
+        this.getDatafromDatabase()
     }
 
     handleInputChange = (event) => this.setState({
@@ -30,7 +34,11 @@ class RestToDoList extends Component {
                 body: JSON.stringify(newTaskObject)
             }
         )
-            .then(() => alert('Dodano task!'))
+            .then(() => {
+                    alert('Dodano task!')
+                    this.getDatafromDatabase()
+                }
+            )
             .catch((error) => alert('Cos poszlo nie tak')) // w catch zawsze jest error
     }
 
