@@ -4,6 +4,7 @@ import REST from './REST'
 import RestToDoList from "./RestToDoList"
 import FirebaseComponent from './FirebaseComponent'
 import FirebaseToDo from './FirebaseToDo'
+import FirebaseLogIn from './FirebaseLogIn'
 
 const routes = [
     {
@@ -35,6 +36,11 @@ const routes = [
         path: '/component/firebase-to-do',
         text: 'FirebaseToDo',
         component: FirebaseToDo
+    },
+    {
+        path: '/component/firebase-log-in',
+        text: 'FirebaseLogIn',
+        component: FirebaseLogIn
     },
 ]
 
