@@ -10,7 +10,8 @@ class FirebaseComponent extends React.Component {
     }
 
     setButtonHandler = () => {
-        database.ref('/setExample').set(this.state.text).then(() => alert('Zapisano dane metodą set'))
+        database.ref('/setExample').set(JSON.parse(this.state.text))
+            .then(() => alert('Zapisano dane metodą set'))
     }
 
     typeText = (event) => {
