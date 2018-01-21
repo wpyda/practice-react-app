@@ -6,7 +6,7 @@ class REST extends React.Component {
     }
 
     componentWillMount() {
-        fetch('https://ad-snadbox.firebaseio.com/.json')
+        fetch('https://wpd-sandbox.firebaseio.com/restToDo/wojtek/')
             .then(response => response.json())
             .then(dataFromDatabase => this.setState({
                 data: dataFromDatabase
