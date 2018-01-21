@@ -10,8 +10,17 @@ class FirebaseComponent extends React.Component {
     }
 
     setButtonHandler = () => {
-        database.ref('/setExample').set(JSON.parse(this.state.text))
-            .then(() => alert('Zapisano dane metodą set'))
+        let parsedData = null
+
+        try {
+            parsedData = JSON.parse(this.state.text)
+        } catch(error){
+            alert('Wpisałeś niepoprawnego JSONa')
+            return
+        }
+
+        database.ref('/setExample').set(parsedData)
+            .then(() => alert('Zapisano dane metodą SET'))
     }
 
     typeText = (event) => {
@@ -27,6 +36,7 @@ class FirebaseComponent extends React.Component {
                         floatingLabelText="JSON to send"
                         multiLine={true}
                         rows={2}
+                        fullWidth={true}
                         onChange={this.typeText}
                     />
                 </div>
