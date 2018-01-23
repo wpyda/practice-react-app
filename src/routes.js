@@ -6,6 +6,7 @@ import FirebaseComponent from './components/FirebaseComponent'
 import FirebaseToDo from './components/FirebaseToDo'
 import FirebaseLogIn from './components/FirebaseLogIn'
 import ReduxToDo from './components/ReduxToDo'
+import ReduxSimpleText from './components/ReduxSimpleText'
 
 const routes = [
     {
@@ -47,6 +48,11 @@ const routes = [
         path: '/component/redux-to-do',
         text: 'ReduxToDo',
         component: ReduxToDo
+    },
+    {
+        path: '/component/redux-simple-text',
+        text: 'ReduxSimpleText',
+        component: ReduxSimpleText
     },
 ]
 
