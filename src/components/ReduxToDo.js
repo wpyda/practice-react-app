@@ -1,5 +1,4 @@
 import React from 'react'
-
 import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -7,12 +6,12 @@ import {List, ListItem} from 'material-ui/List'
 import ActionDelete from 'material-ui/svg-icons/action/delete'
 
 import {connect} from 'react-redux'
-import {addTask} from "../state/todo";
+import {addTask, deleteTask} from "../state/todo"
 
 const style = {
     margin: 20,
     padding: 20,
-    textAlign: 'center'
+    textAlign: 'center',
 }
 
 const Task = (props) => (
@@ -72,7 +71,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    addTask: name => dispatch(addTask(name))
+    addTask: name => dispatch(addTask(name)),
+    deleteTask: key => dispatch(deleteTask(key))
 })
 
 export default connect (
