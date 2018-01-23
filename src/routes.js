@@ -1,11 +1,11 @@
-import Counter from './Counter'
-import DefaultPropsComponent from './DefaultPropsComponent'
-import REST from './REST'
-import RestToDoList from "./RestToDoList"
-import FirebaseComponent from './FirebaseComponent'
-import FirebaseToDo from './FirebaseToDo'
-import FirebaseLogIn from './FirebaseLogIn'
-import ReduxToDo from './ReduxToDo'
+import Counter from './components/Counter'
+import DefaultPropsComponent from './components/DefaultPropsComponent'
+import REST from './components/REST'
+import RestToDoList from "./components/RestToDoList"
+import FirebaseComponent from './components/FirebaseComponent'
+import FirebaseToDo from './components/FirebaseToDo'
+import FirebaseLogIn from './components/FirebaseLogIn'
+import ReduxToDo from './components/ReduxToDo'
 
 const routes = [
     {

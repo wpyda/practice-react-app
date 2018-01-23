@@ -6,6 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import {List, ListItem} from 'material-ui/List'
 import ActionDelete from 'material-ui/svg-icons/action/delete'
 
+import {connect} from 'react-redux'
+import {addTask} from "../state/todo";
+
 const style = {
     margin: 20,
     padding: 20,
@@ -34,14 +37,14 @@ class ReduxToDo extends React.Component {
                 <TextField
                     hintText='Nowe Zadanie'
                     fullWidth={true}
-                    onChange={this.updateState}
+                    onChange={(e,value)=> this.setState({newTaskName: value})}
                     value={this.state.newTaskName}
                 />
                 <RaisedButton
                     label='Dodaj'
                     secondary={true}
                     fullWidth={true}
-                    onClick={this.props.addTask}
+                    onClick={() => this.props.addTask(this.state.newTaskName)}
                 />
                 <List style={{textAlign: 'left'}}>
                     {
@@ -64,4 +67,15 @@ class ReduxToDo extends React.Component {
     }
 }
 
-export default ReduxToDo
+const mapStateToProps = state => ({
+    tasks: state.todo.tasks
+})
+
+const mapDispatchToProps = dispatch => ({
+    addTask: name => dispatch(addTask(name))
+})
+
+export default connect (
+    mapStateToProps,
+    mapDispatchToProps
+)(ReduxToDo)

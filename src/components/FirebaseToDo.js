@@ -1,5 +1,5 @@
 import React from 'react'
-import {database} from './firebase'
+import {database} from '../firebase'
 
 import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
@@ -71,7 +71,7 @@ class FirebaseToDo extends React.Component {
                 <TextField
                     hintText='Nowe Zadanie'
                     fullWidth={true}
-                    onChange={this.updateState}
+                    onChange={(e,value)=> this.setState({newTaskName: value})}
                     value={this.state.newTaskName}
                 />
                 <RaisedButton

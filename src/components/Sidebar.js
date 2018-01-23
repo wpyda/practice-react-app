@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 
-import routes from './routes'
+import routes from '../routes'
 
 const SidebarItem = (props) => (
     <Link to={props.to}
