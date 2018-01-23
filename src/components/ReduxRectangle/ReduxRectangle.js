@@ -6,7 +6,17 @@ class ReduxRectangle extends React.Component {
     render() {
         return (
             <div>
-                dadadad
+                <div
+                    style={{
+                        width: 200,
+                        height: 200,
+                        backgroundColor: 'red'
+                    }}>
+                </div>
+
+                <RaisedButton
+                    label={"Toggle"}
+                />
             </div>
         )
     }
