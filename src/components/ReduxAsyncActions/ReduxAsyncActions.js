@@ -33,8 +33,8 @@ class ReduxAsyncActions extends React.Component {
 
 const exampleData = {
     name: {
-        first: "Wojciech",
-        last: "Pyda"
+        first: "Woj",
+        last: "Py"
     }
 }
 
