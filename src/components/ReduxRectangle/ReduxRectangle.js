@@ -1,7 +1,7 @@
 import React from 'react'
 
-import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
+import {connect} from 'react-redux'
 import {toggleRect} from '../../state/rectangle'
 
 class ReduxRectangle extends React.Component {
@@ -34,10 +34,12 @@ class ReduxRectangle extends React.Component {
 const mapStateToProps = state => ({
     //nazwa propsa: kawałek.stanu.który.przypinamy
     isRectVisible: state.rectangle.isRectVisible
+    // rectangle z 'rectangle: rectangleReducer' ze store.js
+    // isRectVisible z initial state z rectangle.js
 })
 
 const mapDispatchToProps = dispatch => ({
-    //nazwa propsa: funkcja.która.wywoła.dispatch (z akcją)
+    //nazwa propsa: funkcja.która.wywoła.dispatch (z akcją z kreatora z rectangle.js)
     handleButtonClick: () => dispatch(toggleRect())
 })
 
