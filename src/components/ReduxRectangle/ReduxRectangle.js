@@ -43,6 +43,7 @@ const mapStateToProps = state => ({
     isRectVisible: state.rectangle.isRectVisible
     // rectangle z 'rectangle: rectangleReducer' ze store.js
     // isRectVisible z initial state z rectangle.js
+    // state i dispatch nie zależą od nas, takie argumenty są przekazywane odgórnie
 })
 
 const mapDispatchToProps = dispatch => ({
