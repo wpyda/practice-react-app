@@ -8,6 +8,7 @@ import FirebaseLogIn from './components/FirebaseLogIn'
 import ReduxToDo from './components/ReduxToDo'
 import ReduxSimpleText from './components/ReduxSimpleText'
 import ReduxRectangle from './components/ReduxRectangle'
+import ReduxCounter from './components/ReduxCounter'
 
 const routes = [
     {
@@ -59,6 +60,11 @@ const routes = [
         path: '/component/redux-rectangle',
         text: 'ReduxRectangle',
         component: ReduxRectangle
+    },
+    {
+        path: '/component/redux-counter',
+        text: 'ReduxCounter',
+        component: ReduxCounter
     },
 ]
 
