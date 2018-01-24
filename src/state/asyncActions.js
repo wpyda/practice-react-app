@@ -1,11 +1,3 @@
-// example data
-// const exampleData = {
-//     name: {
-//         first: "Wojciech",
-//         last: "Pyda"
-//     }
-// }
-
 const SET_DATA = 'asyncActions/SET_DATA'
 
 // ACTION CREATOR
@@ -13,6 +5,12 @@ export const setData = data => ({
     type: SET_DATA,
     data: data
 })
+
+export const fetchData = () => (dispatch, getState) => {
+    fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => dispatch(setData(data.results[0])))
+}
 
 const initialState = {
     randomUserData: null

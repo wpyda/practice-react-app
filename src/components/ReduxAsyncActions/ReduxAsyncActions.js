@@ -2,7 +2,7 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-import {setData} from "../../state/asyncActions";
+import {fetchData} from "../../state/asyncActions";
 
 class ReduxAsyncActions extends React.Component {
     render() {
@@ -31,19 +31,12 @@ class ReduxAsyncActions extends React.Component {
     }
 }
 
-const exampleData = {
-    name: {
-        first: "Woj",
-        last: "Py"
-    }
-}
-
 const mapStateToProps = state => ({
     randomUserData: state.asyncActions.randomUserData
 })
 
 const mapDispatchToProps = dispatch => ({
-    getRandomUserData: () => dispatch(setData(exampleData))
+    getRandomUserData: () => dispatch(fetchData())
 })
 
 export default connect(
