@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {toggleRect} from '../../state/rectangle'
 
 class ReduxRectangle extends React.Component {
+
     render() {
         return (
 
@@ -23,8 +24,14 @@ class ReduxRectangle extends React.Component {
                 }
 
                 <RaisedButton
-                    label={"Toggle"}
+                    label={this.props.isRectVisible ? "VISIBLE" : "NOT VISIBLE"}
                     onClick={this.props.handleButtonClick}
+                />
+                <RaisedButton
+                    label={"BLINK"}
+                    onClick={() => setInterval(() => {
+                        this.props.handleButtonClick()
+                    }, 1000)}
                 />
             </div>
         )
