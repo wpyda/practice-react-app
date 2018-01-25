@@ -42,6 +42,13 @@ const SignUp = (props) => (
                 style={styles.input}
                 onChange={props.onPasswordChange}
             />
+            <TextField
+                name="retypePassword"
+                placeholder={'Retype password'}
+                type="password"
+                style={styles.input}
+                onChange={props.onRetypePasswordChange}
+            />
             <RaisedButton
                 primary={true}
                 style={styles.button}
