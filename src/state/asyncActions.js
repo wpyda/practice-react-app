@@ -19,7 +19,7 @@ export const fetchData = () => (dispatch, getState) => {
     dispatch(startLoading())
     dispatch(fetchingStarted())
 
-    setTimeout(                                     // just for slowing down "Ładowanie"
+    setTimeout( // just for slowing down "Ładowanie"
         () => fetch('https://randomuser.me/api')
             .then(response => response.json())
             .then(data => {
