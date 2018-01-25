@@ -15,13 +15,16 @@ const fetchingFailed = () => ({type: FETCHING_FAILED})
 
 export const fetchData = () => (dispatch, getState) => {
     dispatch(fetchingStarted())
-    fetch('https://randomuser.me/api')
-        .then(response => response.json())
-        .then(data => {
-            dispatch(setData(data.results[0]))
-            dispatch(fetchingFinished())
-        })
-        .catch(error => dispatch(fetchingFailed()))
+
+    setTimeout(                                     // just for slowing down "Ładowanie"
+        () => fetch('https://randomuser.me/api')
+            .then(response => response.json())
+            .then(data => {
+                dispatch(setData(data.results[0]))
+                dispatch(fetchingFinished())
+            })
+            .catch(error => dispatch(fetchingFailed()))
+        , 1000)
 }
 
 const initialState = {
@@ -35,7 +38,7 @@ const messages = {
 }
 
 export default (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_DATA:
             return {
                 ...state,
@@ -52,10 +55,10 @@ export default (state = initialState, action) => {
                 messageForUser: initialState.messageForUser // initialState.messageForUser to to samo co '', ale '' to duplikat messageForUser
             }
         case FETCHING_FAILED:
-                return {
-                    ...state,
-                    messageForUser: messages.failed
-                }
+            return {
+                ...state,
+                messageForUser: messages.failed
+            }
         default:
             return state
     }

@@ -2,19 +2,23 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
-import {fetchData} from "../../state/asyncActions";
+import {fetchData} from '../../state/asyncActions'
 
 class ReduxAsyncActions extends React.Component {
     render() {
         return (
             <div>
                 <div>
+                    {this.props.messageForUser}
+                </div>
+                <div>
                     {
                         this.props.randomUserData ?
                         this.props.randomUserData.name.first
                         :
                         'Nie załadowano imienia'
-                    } <br />
+                    }
+                    <br />
                     {
                         this.props.randomUserData ?
                         this.props.randomUserData.name.last
@@ -32,7 +36,8 @@ class ReduxAsyncActions extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    randomUserData: state.asyncActions.randomUserData
+    randomUserData: state.asyncActions.randomUserData,
+    messageForUser: state.asyncActions.messageForUser
 })
 
 const mapDispatchToProps = dispatch => ({
