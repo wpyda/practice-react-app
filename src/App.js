@@ -4,7 +4,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar"
+import LoadingIndicator from "./components/LoadingIndicator"
 
 import routes from './routes'
 
@@ -28,6 +29,7 @@ class App extends Component {
                 <MuiThemeProvider>
                     <Router>
                         <div>
+                            <LoadingIndicator/>
                             <AppBar
                                 title="My First App"
                                 onLeftIconButtonClick={this.drawerToggle}

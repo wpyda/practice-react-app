@@ -1,3 +1,5 @@
+import {startLoading, stopLoading} from "./loading";
+
 const SET_DATA = 'asyncActions/SET_DATA'
 const FETCHING_STARTED = 'asyncActions/FETCHING_STARTED'
 const FETCHING_FINISHED = 'asyncActions/FETCHING_FINISHED'
@@ -14,6 +16,7 @@ const fetchingFinished = () => ({type: FETCHING_FINISHED})
 const fetchingFailed = () => ({type: FETCHING_FAILED})
 
 export const fetchData = () => (dispatch, getState) => {
+    dispatch(startLoading())
     dispatch(fetchingStarted())
 
     setTimeout(                                     // just for slowing down "Ładowanie"
@@ -22,8 +25,12 @@ export const fetchData = () => (dispatch, getState) => {
             .then(data => {
                 dispatch(setData(data.results[0]))
                 dispatch(fetchingFinished())
+                dispatch(stopLoading())
             })
-            .catch(error => dispatch(fetchingFailed()))
+            .catch(error => {
+                dispatch(fetchingFailed())
+                dispatch(stopLoading())
+            })
         , 1000)
 }
 
