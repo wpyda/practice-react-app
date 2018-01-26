@@ -6,10 +6,15 @@ import {connect} from 'react-redux'
 
 const LogInLogsList = (props) => (
     <ul>
-        {Object.entries(props.loginLogsList || {})
-            .map(([key, value]) => (
-                <li key={key}>{moment(value.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</li>
-            ))
+        {   // or props.loginLogsList && Object.entries....
+            Object.entries(props.loginLogsList || {})
+                .map(([key, value]) => (
+                    <li key={key}>
+                        {
+                            moment(value.timestamp).format('MMMM Do YYYY, h:mm:ss a')
+                        }
+                    </li>
+                ))
         }
     </ul>
 )
