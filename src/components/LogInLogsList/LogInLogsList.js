@@ -1,15 +1,17 @@
 import React from 'react'
 
+import moment from 'moment'
+
 import {connect} from 'react-redux'
 
 const LogInLogsList = (props) => (
-    <div>
+    <ul>
         {Object.entries(props.loginLogsList || {})
             .map(([key, value]) => (
-                <div>{key} ::: {value.timestamp}</div>
+                <li key={key}>{moment(value.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</li>
             ))
         }
-    </div>
+    </ul>
 )
 
 const mapStateToProps = state => ({
