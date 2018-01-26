@@ -21,6 +21,17 @@ class Auth extends React.Component {
         this.setState(newState)
     }
 
+    createUserHandler = () => {
+        if (this.state.signUpPassword !== this.state.signUpRetypePassword) {
+            alert('Podane hasła nie są jednakowe')
+            return
+        }
+        this.props.onSignUpClick(
+            this.state.signUpEmail,
+            this.state.signUpPassword
+        )
+    }
+
     render() {
         return (
             this.props.userData ?
@@ -30,14 +41,14 @@ class Auth extends React.Component {
                     <LogIn
                         onEmailChange={(event, value) => (this.handleInput('loginEmail', event, value))}
                         onPasswordChange={(event, value) => (this.handleInput('loginPassword', event, value))}
-                        onLogInClick={()=> this.props.onLogInClick(this.state.loginEmail, this.state.loginPassword)}
+                        onLogInClick={() => this.props.onLogInClick(this.state.loginEmail, this.state.loginPassword)}
                         onLogInByGoogleClick={this.props.onLogInByGoogleClick}    // bez () => gdyż nie przekazujemy argumentów = nie wywołujemy funkcji
                     />
 
                     <SignUp
                         onEmailChange={(event, value) => (this.handleInput('signUpEmail', event, value))}
                         onPasswordChange={(event, value) => (this.handleInput('signUpPassword', event, value))}
-                        onSignUpClick={() => {this.onSignUpClick(this.state.signUpEmail, this.state.signUpPassword)}}
+                        onSignUpClick={this.createUserHandler}
                         onRetypePasswordChange={(event, value) => (this.handleInput('signUpRetypePassword', event, value))}
                     />
                 </div>
