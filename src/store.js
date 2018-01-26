@@ -28,6 +28,6 @@ const store = createStore(
     )
 )
 
-store.dispatch(initAuth)
+store.dispatch(initAuth())
 
 export default store

@@ -1,4 +1,4 @@
-import {auth} from '../firebase'
+import {auth, googleProvider} from '../firebase'
 
 const SET_USER = 'auth/SET_USER'
 
@@ -17,6 +17,18 @@ export const initAuth = () => (dispatch, getState) => {
 export const logIn = (email, password) => (dispatch, getState) => {
     auth.signInWithEmailAndPassword(email, password)
         .then(() => console.log('Logged in'))
+        .catch(() => alert('Something wrong'))
+}
+
+export const logInByGoogle = () => (dispatch, getState) => {
+    auth.signInWithPopup(googleProvider)
+        .then(() => console.log('Logged in'))
+        .catch(() => alert('Something wrong'))
+}
+
+export const createUser = (email, password) => (dispatch, getState) => {
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(() => console.log('User registered'))
         .catch(() => alert('Something wrong'))
 }
 
