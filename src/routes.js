@@ -10,6 +10,7 @@ import ReduxSimpleText from './components/ReduxSimpleText'
 import ReduxRectangle from './components/ReduxRectangle'
 import ReduxCounter from './components/ReduxCounter'
 import ReduxAsyncActions from './components/ReduxAsyncActions'
+import LogInLogsList from './components/LogInLogsList'
 
 const routes = [
     {
@@ -71,6 +72,11 @@ const routes = [
         path: '/component/redux-async-actions',
         text: 'ReduxAsyncActions',
         component: ReduxAsyncActions
+    },
+    {
+        path: '/component/login-logs-list',
+        text: 'LogInLogsList',
+        component: LogInLogsList
     },
 ]
 
