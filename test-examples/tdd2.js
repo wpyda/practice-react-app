@@ -64,3 +64,28 @@ let example
 fetch('https://randomuser.me/api')
     .then(response => response.json())
     .then (data => example = data)
+
+
+const fakeData = {
+    results: [
+        {
+            name: {
+                first: 'Mateusz',
+                last: 'Choma'
+            }
+        }
+    ]
+}
+
+const getRandomName = () => {
+    return fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => `${data.results[0].name.first} ${data.results[0].name.last}`
+        )
+}
+
+test('fetchnig randomuser data', () => {
+    return fetch('https://randomuser.me/api')
+        .then(response => response.json())
+        .then(data => expect(data).toBeDefined())
+})
