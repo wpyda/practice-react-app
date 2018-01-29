@@ -56,3 +56,11 @@ if(
         {name: 'cats toy', price: 34, quantity: 1}
     ]) !== 445
 ) throw Error('Adding prices with quantity & free shipping after 100, fails!')
+
+// ------------------------------------------------------------------------------------
+
+// przypisanie pobranych danych do zmiennej globalnej
+let example
+fetch('https://randomuser.me/api')
+    .then(response => response.json())
+    .then (data => example = data)
